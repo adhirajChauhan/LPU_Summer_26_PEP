@@ -103,9 +103,103 @@ public:
 };
 
 
+https://www.geeksforgeeks.org/problems/pair-sum-in-a-sorted-and-rotated-array/1
+
+class Solution {
+  public:
+    bool pairInSortedRotated(vector<int>& arr, int target) {
+        // code here
+        int pivot = 0;
+        int n = arr.size();
+        for(int i = 0; i < n - 1; i++){
+            if(arr[i] > arr[i + 1]){
+                pivot = i + 1;
+                break;
+            }
+        }
+        int i = pivot;
+        int j = (pivot - 1 + n) % n;
+        
+        while( i != j){
+            int sum = arr[i] + arr[j];
+            if(sum == target) return true;
+            
+            else if(sum < target){
+                i = (i + 1) % n;
+            }
+            else{
+                j = (j - 1 + n) % n;
+            }
+        }
+        return false;
+    }
+};
 
 
+https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/
 
+class Solution {
+public:
+    int firstOccurance(vector<int> &nums, int target){
+        int left = 0;
+        int right = nums.size() - 1;
+        int ans = -1;
+
+        while(left <= right){
+            int mid = (left + right)/2;
+
+            if(nums[mid] == target){
+
+            }
+            else if(nums[mid] < target){
+
+            }
+            else{
+                
+            }
+        }
+    }
+
+    int lastOccurance(vector<int> &nums, int target){
+        
+    }
+    vector<int> searchRange(vector<int>& nums, int target) {
+        
+    }
+};
+
+
+https://www.geeksforgeeks.org/problems/floor-in-a-sorted-array-1587115620/1
+
+
+class Solution {
+  public:
+    int findFloor(vector<int>& arr, int x) {
+        // code here
+        int left = 0;
+        int right = arr.size() - 1;
+        
+        int ans = -1;
+        
+        while(left <= right){
+            int mid = (left + right)/2;
+            
+            if(arr[mid] == x){
+                ans = mid;
+                left = mid + 1;
+            }
+            else if(arr[mid] < x){
+                ans = mid;
+                left = mid + 1;
+            }
+            else{
+                right = mid - 1;
+            }
+        }
+        return ans;
+        
+    }
+};
 
 
 
