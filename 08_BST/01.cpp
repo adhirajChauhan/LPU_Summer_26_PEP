@@ -146,3 +146,70 @@ public:
         return validate(root, LLONG_MIN, LLONG_MAX);
     }
 };
+
+
+
+https://leetcode.com/problems/delete-node-in-a-bst/description/
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+TreeNode* minElement(TreeNode* node){
+    while(node->left != NULL){
+        node = node->left;
+    }
+     return node;
+}
+    TreeNode* deleteNode(TreeNode* root, int key) {
+        //step -> find the node to be deleted by doin searching
+        //step 2 -> restructure its children while preserving the order
+
+        //there can be three cases for deleteing a node
+            //case 1 -? no children (leaf node) -> this can be deleted directly
+            //case 2 -> one child -> replace the current node with its only child
+
+            if(root== NULL) return NULL:
+
+            if(key < root->val){
+                root->left = deleteNode(root->left, key);
+            }
+            else if(key > root->val){
+                root->right = deleteNode(root->right, key)
+            }
+            else{
+                //case 1
+                if(root->left == NULL){
+                    TreeNode* temp = root->right;
+                    delete root;
+                    return temp;
+                }
+                else if(root->left == NULL){
+                    TreeNode* temp = root->right;
+                    delete root;
+                    return temp;
+                }
+
+                //case 3 -> node has two children
+                //find inorder successor (mmin val in RST)
+                TreeNode* temp = minElement(root->right);
+                //copy the miin elements value in the node we are suppose to del
+                root->val = temp->val;
+
+                //delete the successor from BST(as we have already copied the value)
+                root->right = deleteNode(root->right, temp->val);
+            }
+            return root;
+
+
+    }
+};
